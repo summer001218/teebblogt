@@ -8,7 +8,7 @@ use Symfony\Config\Framework\HttpClient\DefaultOptions\RetryFailedConfig;
 
 class PostFactory
 {
-    public function create(string $title, string $body, String $summary=null, string $status='dratf'):Post
+    public function create(string $title, string $body, String $summary=null, string $status='draft'):Post
     {
        $post = new Post();
        $post -> setTitle($title);
@@ -26,7 +26,7 @@ class PostFactory
     private function sliceBodyToSummary(string $body, int $length=140)
     {   
         # strip_tags()方法可以去除HTML标签
-        
+
         return mb_substr(strip_tags($body), 0, $length);
     }
 }

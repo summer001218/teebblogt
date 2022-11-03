@@ -37,6 +37,9 @@ class Post
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $postImage = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -145,6 +148,18 @@ class Post
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPostImage(): ?string
+    {
+        return $this->postImage;
+    }
+
+    public function setPostImage(?string $postImage): self
+    {
+        $this->postImage = $postImage;
 
         return $this;
     }
